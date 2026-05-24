@@ -6,7 +6,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { LogOut, Save } from "lucide-react"
 
 const updateAgencyName = createServerFn({ method: "POST" })
-  .validator((d: { userId: string; name: string }) => d)
+  .inputValidator((d: { userId: string; name: string }) => d)
   .handler(async ({ data }) => {
     const { createClient } = await import("~/lib/supabase/client")
     const supabase = createClient()

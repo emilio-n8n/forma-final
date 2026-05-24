@@ -25,7 +25,7 @@ export function ChatWindow() {
     onFinish: async (_message) => {
       if (!user || !conversationId) return
       const sug = await generateSuggestions({
-        data: { messages: [...messages, _message].map((m) => ({ role: m.role, content: m.content })) },
+        data: { messages: [...messages, _message].map((m: any) => ({ role: m.role, content: m.content })) },
       })
       setSuggestions(sug)
     },
@@ -40,6 +40,7 @@ export function ChatWindow() {
     if (!user) return
     setInitialLoading(true)
     const conv = await ensureConversation({ data: { userId: user.id } })
+    if (!conv) return
     setConversationId(conv.id)
     const msgs = await loadMessages({ data: { conversationId: conv.id } })
     if (msgs.length > 0) {

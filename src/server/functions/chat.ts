@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { createClient } from "~/lib/supabase/client"
 
 export const ensureConversation = createServerFn({ method: "GET" })
-  .validator((d: { userId: string }) => d)
+  .inputValidator((d: { userId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { data: existing } = await supabase
@@ -24,7 +24,7 @@ export const ensureConversation = createServerFn({ method: "GET" })
   })
 
 export const loadMessages = createServerFn({ method: "GET" })
-  .validator((d: { conversationId: string }) => d)
+  .inputValidator((d: { conversationId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { data: messages } = await supabase
@@ -37,7 +37,7 @@ export const loadMessages = createServerFn({ method: "GET" })
   })
 
 export const saveMessage = createServerFn({ method: "POST" })
-  .validator((d: { conversationId: string; userId: string; role: string; content: string; citations?: unknown }) => d)
+  .inputValidator((d: { conversationId: string; userId: string; role: string; content: string; citations?: unknown }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { error } = await supabase.from("messages").insert({
@@ -52,7 +52,7 @@ export const saveMessage = createServerFn({ method: "POST" })
   })
 
 export const resetConversation = createServerFn({ method: "POST" })
-  .validator((d: { conversationId: string }) => d)
+  .inputValidator((d: { conversationId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     await supabase.from("messages").delete().eq("conversation_id", data.conversationId)
@@ -60,7 +60,7 @@ export const resetConversation = createServerFn({ method: "POST" })
   })
 
 export const listConversations = createServerFn({ method: "GET" })
-  .validator((d: { userId: string }) => d)
+  .inputValidator((d: { userId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { data: conversations } = await supabase
@@ -73,7 +73,7 @@ export const listConversations = createServerFn({ method: "GET" })
   })
 
 export const deleteConversation = createServerFn({ method: "POST" })
-  .validator((d: { conversationId: string }) => d)
+  .inputValidator((d: { conversationId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     await supabase.from("messages").delete().eq("conversation_id", data.conversationId)
@@ -82,7 +82,7 @@ export const deleteConversation = createServerFn({ method: "POST" })
   })
 
 export const generateSuggestions = createServerFn({ method: "POST" })
-  .validator((d: { messages: { role: string; content: string }[] }) => d)
+  .inputValidator((d: { messages: { role: string; content: string }[] }) => d)
   .handler(async ({ data }) => {
     const lastMsg = data.messages.slice(-1)[0]
     if (!lastMsg) return []

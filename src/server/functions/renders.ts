@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { createClient } from "~/lib/supabase/client"
 
 export const listRenders = createServerFn({ method: "GET" })
-  .validator((d: { userId: string }) => d)
+  .inputValidator((d: { userId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { data: renders } = await supabase
@@ -14,7 +14,7 @@ export const listRenders = createServerFn({ method: "GET" })
   })
 
 export const createRender = createServerFn({ method: "POST" })
-  .validator((d: {
+  .inputValidator((d: {
     userId: string
     prompt: string
     style?: string

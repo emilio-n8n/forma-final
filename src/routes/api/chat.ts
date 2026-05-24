@@ -5,7 +5,12 @@ export async function POST(req: Request) {
   const { messages, conversationId } = await req.json()
 
   const result = streamText({
-    model: cerebras("gpt-oss-120b", { reasoningEffort: "medium" }),
+    model: cerebras("gpt-oss-120b") as any,
+    providerOptions: {
+      cerebras: {
+        reasoningEffort: "medium",
+      },
+    },
     messages,
     onFinish: async ({ text }) => {
       const { createClient } = await import("~/lib/supabase/client")
