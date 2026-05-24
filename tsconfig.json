@@ -16,8 +16,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./src/*"]
     }
   },
-  "include": ["app", ".vite"]
+  "include": ["src", ".vite"]
 }
