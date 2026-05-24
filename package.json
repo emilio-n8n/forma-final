@@ -2,10 +2,10 @@
   "name": "forma-final",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "start": "vite preview",
-    "deploy": "vite build && npx netlify deploy --prod"
+    "dev": "react-start dev",
+    "build": "react-start build",
+    "start": "react-start start",
+    "deploy": "react-start build && npx netlify deploy --prod"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^1.0.0",
