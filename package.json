@@ -2,10 +2,10 @@
   "name": "forma-final",
   "type": "module",
   "scripts": {
-    "dev": "react-start dev",
-    "build": "react-start build",
-    "start": "react-start start",
-    "deploy": "react-start build && npx netlify deploy --prod"
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "deploy": "vinxi build && npx netlify deploy --prod"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^1.0.0",
