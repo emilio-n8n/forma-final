@@ -2,10 +2,10 @@
   "name": "forma-final",
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "start": "vinxi start",
-    "deploy": "vinxi build && npx netlify deploy --prod"
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview",
+    "deploy": "vite build && npx netlify deploy --prod"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^1.0.0",
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "@tanstack/react-router-devtools": "^1.80.0",
     "@tanstack/router-plugin": "^1.80.0",
     "@types/node": "^22.0.0",
