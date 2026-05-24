@@ -4,7 +4,7 @@ import { createClient } from "~/lib/supabase/client"
 type ProjectStatus = "todo" | "in_progress" | "review" | "done"
 
 export const listProjects = createServerFn({ method: "GET" })
-  .validator((d: { userId: string }) => d)
+  .inputValidator((d: { userId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { data: projects } = await supabase
@@ -16,7 +16,7 @@ export const listProjects = createServerFn({ method: "GET" })
   })
 
 export const createProject = createServerFn({ method: "POST" })
-  .validator((d: { userId: string; title: string; description?: string }) => d)
+  .inputValidator((d: { userId: string; title: string; description?: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     const { data: project } = await supabase
@@ -33,7 +33,7 @@ export const createProject = createServerFn({ method: "POST" })
   })
 
 export const updateProjectStatus = createServerFn({ method: "POST" })
-  .validator((d: { projectId: string; status: ProjectStatus }) => d)
+  .inputValidator((d: { projectId: string; status: ProjectStatus }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     await supabase
@@ -44,7 +44,7 @@ export const updateProjectStatus = createServerFn({ method: "POST" })
   })
 
 export const updateProject = createServerFn({ method: "POST" })
-  .validator((d: { projectId: string; title?: string; description?: string }) => d)
+  .inputValidator((d: { projectId: string; title?: string; description?: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     await supabase
@@ -58,7 +58,7 @@ export const updateProject = createServerFn({ method: "POST" })
   })
 
 export const deleteProject = createServerFn({ method: "POST" })
-  .validator((d: { projectId: string }) => d)
+  .inputValidator((d: { projectId: string }) => d)
   .handler(async ({ data }) => {
     const supabase = createClient()
     await supabase.from("projects").delete().eq("id", data.projectId)

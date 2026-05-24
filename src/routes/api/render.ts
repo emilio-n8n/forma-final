@@ -17,8 +17,8 @@ export async function POST(req: Request) {
     input: {
       prompt: enrichedPrompt,
       image_url: imageUrl || undefined,
-      image_size: "1024x1024",
-    },
+      resolution: "1K",
+    } as any,
   })
 
   const imageUrlResult = result.data.images[0]?.url
